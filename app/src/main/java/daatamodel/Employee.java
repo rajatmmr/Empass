@@ -13,5 +13,21 @@ public class Employee {
         this.post = post;
         this.isAdmin = isAdmin;
     }
+    public int getEmpID () {
+        return empId;
+    }
+    public String getEmpName() {
+        return empName;
+    }
 
+    public String getMobNumber() {
+        return mobNumber;
+    }
+
+    public String getPost() {
+        return post;
+    }
+    public boolean isAdmin() {
+        return isAdmin;
+    }
 }
