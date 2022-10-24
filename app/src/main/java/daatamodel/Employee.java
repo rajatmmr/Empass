@@ -6,12 +6,14 @@ public class Employee {
     private String mobNumber;
     private String post;
     private boolean isAdmin;
-    public Employee (int empId, String empName, String mobNumber, String post, boolean isAdmin) {
+    private int cmpId;
+    public Employee (int empId, String empName, String mobNumber, String post, boolean isAdmin, int cmpId) {
         this.empId = empId;
         this.empName = empName;
         this.mobNumber = mobNumber;
         this.post = post;
         this.isAdmin = isAdmin;
+        this.cmpId = cmpId;
     }
     public int getEmpID () {
         return empId;
@@ -29,5 +31,9 @@ public class Employee {
     }
     public boolean isAdmin() {
         return isAdmin;
+    }
+
+    public int getCmpId() {
+        return cmpId;
     }
 }
