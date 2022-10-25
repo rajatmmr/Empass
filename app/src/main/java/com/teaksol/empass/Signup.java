@@ -37,6 +37,7 @@ public class Signup extends AppCompatActivity {
     EditText passwordConform;
     EditText admPass;
     Spinner comp;
+    Boolean userNameCheck;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         adapter = new EmployeeDbAdapter(this);
@@ -94,7 +95,9 @@ public class Signup extends AppCompatActivity {
                     {
                         if(admPass.getText().toString().equals("Mamamia"))
                         {
-                            adapter.signup(convert(userName),convert(password),convert(empName),convert(mobileNumber),convert(post),true,compid(comp));
+                            userNameCheck = adapter.signup(convert(userName),convert(password),convert(empName),convert(mobileNumber),convert(post),true,compid(comp));
+                            Intent intent = new Intent(Signup.this ,LoginPage.class);
+                            startActivity(intent);
                         }
                         else
                         {
@@ -105,7 +108,9 @@ public class Signup extends AppCompatActivity {
                     }
                     else
                     {
-                        adapter.signup(convert(userName),convert(password),convert(empName),convert(mobileNumber),convert(post),false,compid(comp));
+                       userNameCheck =adapter.signup(convert(userName),convert(password),convert(empName),convert(mobileNumber),convert(post),false,compid(comp));
+                        Intent intent = new Intent(Signup.this ,LoginPage.class);
+                        startActivity(intent);
                     }
                 }
                 else
@@ -113,6 +118,12 @@ public class Signup extends AppCompatActivity {
                     password.setText("");
                     passwordConform.setText("");
                     Toast toast = Toast.makeText(getApplicationContext(),"Passwords do not Match",Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                if(userNameCheck==false)
+                {
+                    userName.setText("");
+                    Toast toast = Toast.makeText(getApplicationContext(),"Username already Taken",Toast.LENGTH_LONG);
                     toast.show();
                 }
             }
@@ -128,8 +139,6 @@ public class Signup extends AppCompatActivity {
     }
     public String convert(EditText text)
     {
-        Toast toast = Toast.makeText(getApplicationContext(),text.getText().toString(),Toast.LENGTH_LONG);
-        toast.show();
         return text.getText().toString();
     }
     public int compid(Spinner compa)
