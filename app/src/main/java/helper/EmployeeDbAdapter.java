@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import daatamodel.Employee;
 
@@ -34,6 +35,7 @@ public class EmployeeDbAdapter {
         if(user != -1) {
             return false;
         }
+        username = username.toLowerCase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("username",username);
         contentValues.put("password",password);
@@ -56,6 +58,7 @@ public class EmployeeDbAdapter {
 
 
     private int checkUserId(String username) {
+        username = username.toLowerCase();
         Cursor cursor = employeeDb.query("employee",null,null,null,null,null,null);
         if(cursor.moveToFirst()) {
             do {
@@ -80,7 +83,10 @@ public class EmployeeDbAdapter {
         }
         return false;
     }
-
+    public void deleteEntries() {
+        employeeDb.execSQL("DROP TABLE employee");
+        employeeDb.execSQL("CREATE TABLE employee(empId INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, empName TEXT, mobNumber TEXT, post TEXT, isAdmin INTEGER, cmpId INTEGER)");
+    }
     // Use this to see for logging in the user.
     // Will return empId on successful login, -1 if user does not exist and -2 for wrong password
     public int validateLogin(String username, String password) {
