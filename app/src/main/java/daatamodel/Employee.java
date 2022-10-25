@@ -7,6 +7,8 @@ public class Employee {
     private String post;
     private boolean isAdmin;
     private int cmpId;
+    public Employee(){
+    }
     public Employee (int empId, String empName, String mobNumber, String post, boolean isAdmin, int cmpId) {
         this.empId = empId;
         this.empName = empName;

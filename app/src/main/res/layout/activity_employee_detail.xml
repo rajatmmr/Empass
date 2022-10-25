@@ -5,6 +5,14 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/pattern">
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/sear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/header"
+        app:layout_constraintRight_toRightOf="@id/header"
+        android:visibility="invisible"
+        />
 
     <ImageView
         android:id="@+id/header"
@@ -14,6 +22,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/header"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,6 +78,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"/>
             <TextView
+                android:id="@+id/nameview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="13"
@@ -104,6 +114,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"/>
             <TextView
+                android:id="@+id/numberView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="13"
@@ -136,6 +147,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"/>
             <TextView
+                android:id="@+id/postView"
                 android:layout_weight="13"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -157,8 +169,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:text="Admin:"
-                android:textSize="25dp"
+                android:text="Company:"
+                android:textSize="20dp"
                 android:fontFamily="@font/bungee_inline"
                 android:background="@color/white"
                 android:layout_gravity="center"
@@ -168,6 +180,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"/>
             <TextView
+                android:id="@+id/companyView"
                 android:layout_weight="13"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

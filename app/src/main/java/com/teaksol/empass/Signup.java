@@ -36,6 +36,7 @@ public class Signup extends AppCompatActivity {
     EditText password;
     EditText passwordConform;
     EditText admPass;
+    TextInputLayout admPassLay;
     Spinner comp;
     Boolean userNameCheck;
     @Override
@@ -52,6 +53,7 @@ public class Signup extends AppCompatActivity {
         password = findViewById(R.id.passwordNew);
         passwordConform = findViewById(R.id.repasswordNew);
         admPass = findViewById(R.id.adminPassword);
+        admPassLay=findViewById(R.id.adminPasswordLayout);
         comp = findViewById(R.id.company);
         register = findViewById(R.id.sendDatabtn);
         sp= PreferenceManager.getDefaultSharedPreferences(this);
@@ -77,11 +79,11 @@ public class Signup extends AppCompatActivity {
             public void onClick(View view) {
                 if (admin.isChecked())
                 {
-                    admPass.setVisibility(View.VISIBLE);
+                    admPassLay.setVisibility(View.VISIBLE);
                 }
                 else
                 {
-                    admPass.setVisibility(View.INVISIBLE);
+                    admPassLay.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -93,22 +95,21 @@ public class Signup extends AppCompatActivity {
                 {
                     if(admin.isChecked())
                     {
-                        if(admPass.getText().toString().equals("Mamamia"))
-                        {
-                            userNameCheck = adapter.signup(convert(userName),convert(password),convert(empName),convert(mobileNumber),convert(post),true,compid(comp));
-                            Intent intent = new Intent(Signup.this ,LoginPage.class);
-                            startActivity(intent);
-                        }
-                        else
-                        {
-                            admPass.setText("");
-                            Toast toast =   Toast.makeText(getApplicationContext(),"Invalid Admin Password",Toast.LENGTH_LONG);
-                            toast.show();
-                        }
+                                if (admPass.getText().toString().equals("Mamamia")) {
+                                    userNameCheck = adapter.signup(convert(userName), convert(password), convert(empName), convert(mobileNumber), convert(post), true, compid(comp));
+                                    Intent intent = new Intent(Signup.this, LoginPage.class);
+                                    startActivity(intent);
+                                } else {
+                                    admPass.setText("");
+                                    Toast toast = Toast.makeText(getApplicationContext(), "Invalid Admin Password", Toast.LENGTH_LONG);
+                                    toast.show();
+                                    Intent intent = new Intent(Signup.this, Signup.class);
+                                    startActivity(intent);
+                                }
                     }
                     else
                     {
-                       userNameCheck =adapter.signup(convert(userName),convert(password),convert(empName),convert(mobileNumber),convert(post),false,compid(comp));
+                       userNameCheck = adapter.signup(convert(userName),convert(password),convert(empName),convert(mobileNumber),convert(post),false,compid(comp));
                         Intent intent = new Intent(Signup.this ,LoginPage.class);
                         startActivity(intent);
                     }
@@ -119,12 +120,16 @@ public class Signup extends AppCompatActivity {
                     passwordConform.setText("");
                     Toast toast = Toast.makeText(getApplicationContext(),"Passwords do not Match",Toast.LENGTH_LONG);
                     toast.show();
+                    Intent intent = new Intent(Signup.this, Signup.class);
+                    startActivity(intent);
                 }
-                if(userNameCheck==false)
+                if(adapter.getEmpid(convert(userName))!=-1)
                 {
                     userName.setText("");
                     Toast toast = Toast.makeText(getApplicationContext(),"Username already Taken",Toast.LENGTH_LONG);
                     toast.show();
+                    Intent intent = new Intent(Signup.this, Signup.class);
+                    startActivity(intent);
                 }
             }
         });

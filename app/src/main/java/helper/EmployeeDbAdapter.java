@@ -55,6 +55,22 @@ public class EmployeeDbAdapter {
         }
         return true;
     }
+    public int getEmpid(String username)
+    {
+        open();
+        username = username.toLowerCase();
+        Cursor cursor = employeeDb.query("employee",null,null,null,null,null,null);
+        if(cursor.moveToFirst()) {
+            do {
+                String user = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+                if (user.equals(username)) {
+                    int userId = cursor.getInt(cursor.getColumnIndexOrThrow("empId"));
+                    return userId;
+                }
+            } while(cursor.moveToNext());
+        }
+        return -1;
+    }
 
 
     private int checkUserId(String username) {
@@ -83,6 +99,15 @@ public class EmployeeDbAdapter {
         }
         return false;
     }
+    public String getPassword(int empId){
+        String query = "empId = " + empId;
+        Cursor cursor = employeeDb.query("employee",null,query,null,null,null,null);
+        String pass = null;
+        if (cursor.moveToFirst()) {
+            pass = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+        }
+        return pass;
+    }
     public void deleteEntries() {
         employeeDb.execSQL("DROP TABLE employee");
         employeeDb.execSQL("CREATE TABLE employee(empId INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, empName TEXT, mobNumber TEXT, post TEXT, isAdmin INTEGER, cmpId INTEGER)");
@@ -90,6 +115,7 @@ public class EmployeeDbAdapter {
     // Use this to see for logging in the user.
     // Will return empId on successful login, -1 if user does not exist and -2 for wrong password
     public int validateLogin(String username, String password) {
+        open();
         int userId = checkUserId(username);
         if (userId == -1) {
             return -1;
@@ -102,6 +128,7 @@ public class EmployeeDbAdapter {
 
     //Use this method to get employee data. Will return a Employee class with all employee info.
     public Employee getEmployeeData(int empId) {
+        open();
         String query = "empId = " + empId;
         Cursor cursor = employeeDb.query("employee",null,query,null,null,null,null);
         if (cursor.moveToFirst()) {
