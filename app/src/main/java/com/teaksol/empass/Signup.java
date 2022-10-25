@@ -39,6 +39,7 @@ public class Signup extends AppCompatActivity {
     Spinner comp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        adapter = new EmployeeDbAdapter(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         back = findViewById(R.id.backbtn);
