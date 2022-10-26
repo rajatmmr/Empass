@@ -57,7 +57,9 @@ public class EmployeeDbAdapter {
     }
     public int getEmpid(String username)
     {
-        open();
+        if (employeeDb == null) {
+            this.open();
+        }
         username = username.toLowerCase();
         Cursor cursor = employeeDb.query("employee",null,null,null,null,null,null);
         if(cursor.moveToFirst()) {
@@ -115,7 +117,9 @@ public class EmployeeDbAdapter {
     // Use this to see for logging in the user.
     // Will return empId on successful login, -1 if user does not exist and -2 for wrong password
     public int validateLogin(String username, String password) {
-        open();
+        if (employeeDb == null) {
+            this.open();
+        }
         int userId = checkUserId(username);
         if (userId == -1) {
             return -1;
@@ -128,7 +132,9 @@ public class EmployeeDbAdapter {
 
     //Use this method to get employee data. Will return a Employee class with all employee info.
     public Employee getEmployeeData(int empId) {
-        open();
+        if (employeeDb == null) {
+            this.open();
+        }
         String query = "empId = " + empId;
         Cursor cursor = employeeDb.query("employee",null,query,null,null,null,null);
         if (cursor.moveToFirst()) {
@@ -148,6 +154,9 @@ public class EmployeeDbAdapter {
     }
 
     public ArrayList<Employee> searchCompany (int cmpId) {
+        if (employeeDb == null) {
+            this.open();
+        }
         ArrayList<Employee> empList = new ArrayList<Employee>();
         empList.clear();
         String query = "cmpId = " + cmpId;
