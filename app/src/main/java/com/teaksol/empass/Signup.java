@@ -103,8 +103,7 @@ public class Signup extends AppCompatActivity {
                                     admPass.setText("");
                                     Toast toast = Toast.makeText(getApplicationContext(), "Invalid Admin Password", Toast.LENGTH_LONG);
                                     toast.show();
-                                    Intent intent = new Intent(Signup.this, Signup.class);
-                                    startActivity(intent);
+                                    665        g g
                                 }
                     }
                     else
