@@ -114,6 +114,14 @@ public class EmployeeDbAdapter {
         employeeDb.execSQL("DROP TABLE employee");
         employeeDb.execSQL("CREATE TABLE employee(empId INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, empName TEXT, mobNumber TEXT, post TEXT, isAdmin INTEGER, cmpId INTEGER)");
     }
+
+    public void deleteEntry(int empId) {
+        if (employeeDb == null) {
+            this.open();
+        }
+        String query = "DELETE from employee where empId = " + empId;
+        employeeDb.execSQL(query);
+    }
     // Use this to see for logging in the user.
     // Will return empId on successful login, -1 if user does not exist and -2 for wrong password
     public int validateLogin(String username, String password) {

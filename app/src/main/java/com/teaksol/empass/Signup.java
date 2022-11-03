@@ -102,11 +102,7 @@ public class Signup extends AppCompatActivity {
                                     admPass.setText("");
                                     Toast toast = Toast.makeText(getApplicationContext(), "Invalid Admin Password", Toast.LENGTH_LONG);
                                     toast.show();
-<<<<<<< HEAD
-                                    665        g g
-=======
                                     alright = false;
->>>>>>> 1136f3785e96f867bfa138c6f62582813629b071
                                 }
                     }
                     else
