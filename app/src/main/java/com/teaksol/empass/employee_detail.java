@@ -51,9 +51,7 @@ public class employee_detail extends AppCompatActivity {
         number.setText(stringNumber);
         post.setText(stringPost);
         company.setText(stringCompany);
-        if(admin) {
-            sch.setVisibility(View.VISIBLE);
-        }
+
         sch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
