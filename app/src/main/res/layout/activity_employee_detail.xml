@@ -5,14 +5,17 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/pattern">
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+    <Button
         android:id="@+id/sear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/header"
+        android:fontFamily="@font/bungee_inline"
+        android:text='Edit'
+        android:textColor="#000000"
+        android:visibility="visible"
         app:layout_constraintRight_toRightOf="@id/header"
-        android:visibility="invisible"
-        />
+        app:layout_constraintTop_toTopOf="@id/header" />
 
     <ImageView
         android:id="@+id/header"

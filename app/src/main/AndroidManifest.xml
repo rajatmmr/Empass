@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Empass"
         tools:targetApi="31">
         <activity
+            android:name=".ListActivity"
+            android:exported="false" />
+        <activity
             android:name=".employee_detail"
             android:exported="false" />
         <activity

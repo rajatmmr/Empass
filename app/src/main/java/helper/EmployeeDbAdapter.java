@@ -122,6 +122,13 @@ public class EmployeeDbAdapter {
         String query = "DELETE from employee where empId = " + empId;
         employeeDb.execSQL(query);
     }
+    public void updatdb(int empId,String number, String post){
+        if (employeeDb == null) {
+            this.open();
+        }
+        String query = "UPDATE employee SET mobNumber = '"+number+"', post = '"+post+"' where empId = " + empId;
+        employeeDb.execSQL(query);
+    }
     // Use this to see for logging in the user.
     // Will return empId on successful login, -1 if user does not exist and -2 for wrong password
     public int validateLogin(String username, String password) {
@@ -146,6 +153,7 @@ public class EmployeeDbAdapter {
         String query = "empId = " + empId;
         Cursor cursor = employeeDb.query("employee",null,query,null,null,null,null);
         if (cursor.moveToFirst()) {
+            String userName = cursor.getString(cursor.getColumnIndexOrThrow("username"));
             String empName = cursor.getString(cursor.getColumnIndexOrThrow("empName"));
             String number = cursor.getString(cursor.getColumnIndexOrThrow("mobNumber"));
             String post = cursor.getString(cursor.getColumnIndexOrThrow("post"));
@@ -155,7 +163,7 @@ public class EmployeeDbAdapter {
                 isAdmin = true;
             }
             int cmpId = cursor.getInt(cursor.getColumnIndexOrThrow("cmpId"));
-            Employee emp = new Employee(empId,empName,number,post,isAdmin,cmpId);
+            Employee emp = new Employee(empId,userName,empName,number,post,isAdmin,cmpId);
             return emp;
         }
         return null;
@@ -172,6 +180,7 @@ public class EmployeeDbAdapter {
         if(cursor.moveToFirst()) {
             do {
                 int empId = cursor.getInt(cursor.getColumnIndexOrThrow("empId"));
+                String userName = cursor.getString(cursor.getColumnIndexOrThrow("username"));
                 String empName = cursor.getString(cursor.getColumnIndexOrThrow("empName"));
                 String number = cursor.getString(cursor.getColumnIndexOrThrow("mobNumber"));
                 String post = cursor.getString(cursor.getColumnIndexOrThrow("post"));
@@ -181,7 +190,7 @@ public class EmployeeDbAdapter {
                     isAdmin = true;
                 }
                 int cmp = cursor.getInt(cursor.getColumnIndexOrThrow("cmpId"));
-                Employee emp = new Employee(empId,empName,number,post,isAdmin,cmp);
+                Employee emp = new Employee(empId,userName,empName,number,post,isAdmin,cmp);
                 empList.add(emp);
             } while(cursor.moveToNext());
         }

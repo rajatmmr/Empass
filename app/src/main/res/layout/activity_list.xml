@@ -1,15 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ListView
-        android:id="@+id/lv"
-        android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#efca33"
+    android:orientation="vertical"
+    android:padding="5dp">
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@color/black"
-        android:listSelector="@color/black"
-        android:dividerHeight="2dp"
-        />
-
+        android:text="Edit Details"
+        android:textSize="45dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bungee_inline"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User Name"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bungee_inline"
+        android:id="@+id/userName"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/bungee_inline"
+        android:id="@+id/name"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Post"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/postEdit"
+            android:textColor="@color/black"
+            android:text="Post"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mobile Number"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/numberEdit"
+            android:textColor="@color/black"
+            android:text="Mobile Number"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <Button
+        android:id="@+id/saveDatabtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:background="#111112"
+        android:textColor="#fff"
+        android:layout_marginTop="2dp"/>
+    <Button
+        android:id="@+id/DeleteDatabtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:background="#111112"
+        android:textColor="#fff"
+        android:layout_marginTop="2dp"/>
 
 </LinearLayout>

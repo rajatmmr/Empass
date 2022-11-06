@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +23,7 @@ public class employee_detail extends AppCompatActivity {
     TextView post;
     TextView company;
     Boolean admin;
-    FloatingActionButton sch;
+    Button sch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +51,17 @@ public class employee_detail extends AppCompatActivity {
         number.setText(stringNumber);
         post.setText(stringPost);
         company.setText(stringCompany);
-        if(admin){
+        if(admin) {
             sch.setVisibility(View.VISIBLE);
         }
+        sch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(employee_detail.this, ListActivity.class);
+                intent.putExtra("empId", userId);
+                startActivity(intent);
+            }
+        });
 
 
     }
